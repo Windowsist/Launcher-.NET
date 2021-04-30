@@ -42,6 +42,7 @@ namespace Launcher
                 // First write something so that there is something to read ...  
                 var b = new Launcher();
                 var a = new ProcessStartInfo();
+                
                 b.Arguments=a.Arguments;
                 b.CreateNoWindow =a.CreateNoWindow;
                 b.Domain=a.Domain;
@@ -60,6 +61,8 @@ namespace Launcher
                 b.Verb=a.Verb;
                 b.WindowStyle=a.WindowStyle;
                 b.WorkingDirectory=a.WorkingDirectory;
+
+
                 var writer = new System.Xml.Serialization.XmlSerializer(typeof(Launcher));
                 var wfile = new System.IO.StreamWriter("Default.xml");
                 writer.Serialize(wfile, b);
@@ -73,7 +76,7 @@ namespace Launcher
 
 
                 var psi = new ProcessStartInfo();
-                Environment.SetEnvironmentVariable("LauncherDir", AppDomain.CurrentDomain.SetupInformation.ApplicationBase.Substring(0,AppDomain.CurrentDomain.SetupInformation.ApplicationBase.Length - 1));
+                Environment.SetEnvironmentVariable("LauncherDir", AppDomain.CurrentDomain.SetupInformation.ApplicationBase.Substring(0, AppDomain.CurrentDomain.SetupInformation.ApplicationBase.Length - 1));
                 psi.Arguments = mypsi.Arguments == null ? null : Environment.ExpandEnvironmentVariables(mypsi.Arguments);
                 psi.CreateNoWindow = mypsi.CreateNoWindow;
                 psi.Domain = mypsi.Domain == null ? null : Environment.ExpandEnvironmentVariables(mypsi.Domain);
@@ -101,7 +104,7 @@ namespace Launcher
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                _ = MessageBox.Show(e.Message);
+                _ = MessageBox.Show(e.ToString(), e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
