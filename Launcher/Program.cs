@@ -10,47 +10,8 @@ using System.Windows.Forms;
 
 namespace Launcher
 {
-
-    public static class Program
+    internal static class Program
     {
-        public class Launcher
-        {
-            public class EnvironmentVariable
-            {
-                public EnvironmentVariable(string Variable, string Value)
-                {
-                    this.Variable = Variable;
-                    this.Value = Value;
-                }
-                public EnvironmentVariable()
-                {
-                }
-                public string Variable;
-                public string Value;
-            }
-            public bool ErrorDialog;
-            public string WorkingDirectory;
-            public string FileName;
-            public bool LoadUserProfile;
-            public string Domain;
-            public string PasswordInClearText;
-            public System.Security.SecureString Password;
-            public string UserName;
-            public bool UseShellExecute;
-            public System.Text.Encoding StandardOutputEncoding;
-            public System.Text.Encoding StandardErrorEncoding;
-            public bool RedirectStandardError;
-            public bool RedirectStandardOutput;
-            public bool RedirectStandardInput;
-            public EnvironmentVariable[] Environment;
-            // public EnvironmentVariable[] EnvironmentVariables;
-            public bool CreateNoWindow;
-            public string Arguments;
-            public string Verb;
-            // public IntPtr ErrorDialogParentHandle;
-            public ProcessWindowStyle WindowStyle;
-
-        }
         private static void Main()
         {
             try
@@ -118,7 +79,14 @@ namespace Launcher
                 {
                     foreach (var item in mypsi.Environment)
                     {
-                        psi.Environment.Add(item.Variable, item.Value);
+                        if (item.Value == null)
+                        {
+                            _ = psi.Environment.Remove(item.Variable);
+                        }
+                        else
+                        {
+                            psi.Environment.Add(item.Variable, item.Value);
+                        }
                     }
                 }
                 // foreach (var item in mypsi.EnvironmentVariables)
@@ -142,7 +110,7 @@ namespace Launcher
                 psi.WorkingDirectory = mypsi.WorkingDirectory == null ? null : Environment.ExpandEnvironmentVariables(mypsi.WorkingDirectory);
                 Environment.SetEnvironmentVariable("LauncherDir", null);
 
-                Process.Start(psi);
+                _ = Process.Start(psi);
 #endif
 
             }
@@ -153,5 +121,43 @@ namespace Launcher
                 _ = MessageBox.Show(e.ToString(), e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+    }
+    public class Launcher
+    {
+        public class EnvironmentVariable
+        {
+            public EnvironmentVariable(string Variable, string Value)
+            {
+                this.Variable = Variable;
+                this.Value = Value;
+            }
+            public EnvironmentVariable()
+            {
+            }
+            public string Variable;
+            public string Value;
+        }
+        public bool ErrorDialog;
+        public string WorkingDirectory;
+        public string FileName;
+        public bool LoadUserProfile;
+        public string Domain;
+        public string PasswordInClearText;
+        public System.Security.SecureString Password;
+        public string UserName;
+        public bool UseShellExecute;
+        public System.Text.Encoding StandardOutputEncoding;
+        public System.Text.Encoding StandardErrorEncoding;
+        public bool RedirectStandardError;
+        public bool RedirectStandardOutput;
+        public bool RedirectStandardInput;
+        public EnvironmentVariable[] Environment;
+        // public EnvironmentVariable[] EnvironmentVariables;
+        public bool CreateNoWindow;
+        public string Arguments;
+        public string Verb;
+        // public IntPtr ErrorDialogParentHandle;
+        public ProcessWindowStyle WindowStyle;
+
     }
 }
