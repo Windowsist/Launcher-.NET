@@ -16,6 +16,13 @@ this is an example:
   UseShellExecute default is false 
   -->
   <Environment>
+  <!--
+    delete an environment variable
+    <EnvironmentVariable>
+      <Variable>__ENV_TO_DELETE</Variable>
+      <Value />
+    </EnvironmentVariable>
+  -->
     <EnvironmentVariable>
       <Variable>__MY_ENV1</Variable>
       <Value>MY_VALUE1</Value>
