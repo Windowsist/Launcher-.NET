@@ -6,6 +6,7 @@
   <LoadUserProfile>false</LoadUserProfile>
   <Domain />
   <UserName />
+  <UseShellExecute>true</UseShellExecute>
   <RedirectStandardError>false</RedirectStandardError>
   <RedirectStandardOutput>false</RedirectStandardOutput>
   <RedirectStandardInput>false</RedirectStandardInput>

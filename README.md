@@ -11,7 +11,10 @@ this is an example:
 <Launcher xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <WorkingDirectory>%LauncherDir%</WorkingDirectory>
   <FileName>%SystemRoot%\system32\cmd.exe</FileName>
+  <!--
   <UseShellExecute>false</UseShellExecute>
+  UseShellExecute default is false 
+  -->
   <Environment>
     <EnvironmentVariable>
       <Variable>__MY_ENV1</Variable>

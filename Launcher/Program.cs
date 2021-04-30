@@ -3,8 +3,7 @@ using System;
 // using System.Collections.Generic;
 // using System.Linq;
 // using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.ComponentModel;
+// using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Forms;
 
@@ -37,7 +36,7 @@ namespace Launcher
             public string PasswordInClearText;
             public System.Security.SecureString Password;
             public string UserName;
-            [DefaultValue(true)] public bool UseShellExecute;
+            public bool UseShellExecute;
             public System.Text.Encoding StandardOutputEncoding;
             public System.Text.Encoding StandardErrorEncoding;
             public bool RedirectStandardError;
