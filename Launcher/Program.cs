@@ -85,7 +85,7 @@ namespace Launcher
                         }
                         else
                         {
-                            psi.Environment.Add(item.Variable, item.Value);
+                            psi.Environment.Add(item.Variable, Environment.ExpandEnvironmentVariables(item.Value));
                         }
                     }
                 }
