@@ -30,7 +30,10 @@ namespace Launcher
                     int i = 0;
                     foreach (var envi in a.Environment)
                     {
-                        b.Environment[i++] = new Launcher.EnvironmentVariable(envi.Key, envi.Value);
+                        var env = new Launcher.EnvironmentVariable();
+                        env.Variable = envi.Key;
+                        env.Value = envi.Value;
+                        b.Environment[i++] = env;
                     }
                 }
 
@@ -59,7 +62,7 @@ namespace Launcher
                 b.WorkingDirectory = a.WorkingDirectory;
 
                 var writer = new System.Xml.Serialization.XmlSerializer(typeof(Launcher));
-                using wfile = new System.IO.StreamWriter("Default.xml");
+                using var wfile = new System.IO.StreamWriter("Default.xml");
                 writer.Serialize(wfile, b);
 #else
 
@@ -119,18 +122,10 @@ namespace Launcher
             }
         }
     }
-    public class Launcher
+    public struct Launcher
     {
-        public class EnvironmentVariable
+        public struct EnvironmentVariable
         {
-            public EnvironmentVariable(string Variable, string Value)
-            {
-                this.Variable = Variable;
-                this.Value = Value;
-            }
-            public EnvironmentVariable()
-            {
-            }
             public string Variable;
             public string Value;
         }
