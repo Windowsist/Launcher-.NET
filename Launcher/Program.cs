@@ -59,16 +59,13 @@ namespace Launcher
                 b.WorkingDirectory = a.WorkingDirectory;
 
                 var writer = new System.Xml.Serialization.XmlSerializer(typeof(Launcher));
-                var wfile = new System.IO.StreamWriter("Default.xml");
+                using wfile = new System.IO.StreamWriter("Default.xml");
                 writer.Serialize(wfile, b);
-                wfile.Close();
 #else
 
                 // Now we can read the serialized obj ...  
-                var file = new System.IO.StreamReader(AppDomain.CurrentDomain.SetupInformation.ApplicationBase + AppDomain.CurrentDomain.SetupInformation.ApplicationName.Substring(0, AppDomain.CurrentDomain.SetupInformation.ApplicationName.Length - 3) + "xml");
+                using var file = new System.IO.StreamReader(AppDomain.CurrentDomain.SetupInformation.ApplicationBase + AppDomain.CurrentDomain.SetupInformation.ApplicationName.Substring(0, AppDomain.CurrentDomain.SetupInformation.ApplicationName.Length - 3) + "xml");
                 Launcher mypsi = (Launcher)new System.Xml.Serialization.XmlSerializer(typeof(Launcher)).Deserialize(file);
-                file.Close();
-
 
                 var psi = new ProcessStartInfo();
                 Environment.SetEnvironmentVariable("LauncherDir", AppDomain.CurrentDomain.SetupInformation.ApplicationBase.Substring(0, AppDomain.CurrentDomain.SetupInformation.ApplicationBase.Length - 1));
