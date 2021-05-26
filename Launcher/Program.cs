@@ -62,14 +62,18 @@ namespace Launcher
                 b.WorkingDirectory = a.WorkingDirectory;
 
                 var writer = new System.Xml.Serialization.XmlSerializer(typeof(Launcher));
-                using var wfile = new System.IO.StreamWriter("Default.xml");
-                writer.Serialize(wfile, b);
+                using (var wfile = new System.IO.StreamWriter("Default.xml"))
+                {
+                    writer.Serialize(wfile, b);
+                }
 #else
 
                 // Now we can read the serialized obj ...  
-                using var file = new System.IO.StreamReader(AppDomain.CurrentDomain.SetupInformation.ApplicationBase + AppDomain.CurrentDomain.SetupInformation.ApplicationName.Substring(0, AppDomain.CurrentDomain.SetupInformation.ApplicationName.Length - 3) + "xml");
-                Launcher mypsi = (Launcher)new System.Xml.Serialization.XmlSerializer(typeof(Launcher)).Deserialize(file);
-
+                Launcher mypsi;
+                using (var file = new System.IO.StreamReader(AppDomain.CurrentDomain.SetupInformation.ApplicationBase + AppDomain.CurrentDomain.SetupInformation.ApplicationName.Substring(0, AppDomain.CurrentDomain.SetupInformation.ApplicationName.Length - 3) + "xml"))
+                {
+                    mypsi = (Launcher)new System.Xml.Serialization.XmlSerializer(typeof(Launcher)).Deserialize(file);
+                }
                 var psi = new ProcessStartInfo();
                 Environment.SetEnvironmentVariable("LauncherDir", AppDomain.CurrentDomain.SetupInformation.ApplicationBase.Substring(0, AppDomain.CurrentDomain.SetupInformation.ApplicationBase.Length - 1));
                 psi.Arguments = mypsi.Arguments == null ? null : Environment.ExpandEnvironmentVariables(mypsi.Arguments);
