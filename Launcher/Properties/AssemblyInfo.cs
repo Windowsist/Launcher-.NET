@@ -7,10 +7,10 @@ using System.Runtime.InteropServices;
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("Launcher")]
 // [assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
+// [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Windowsist")]
 [assembly: AssemblyProduct("ProcessTools")]
-[assembly: AssemblyCopyright("Copyright ©  Windowsist")]
+[assembly: AssemblyCopyright("© Windowsist. All rights reserved.")]
 // [assembly: AssemblyTrademark("")]
 // [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("da7d2b75-02d8-4d20-a8b8-227c1a1a2e6a")]
+// [assembly: Guid("da7d2b75-02d8-4d20-a8b8-227c1a1a2e6a")]
 
 // 程序集的版本信息由下列四个值组成: 
 //
