@@ -54,7 +54,7 @@ namespace Launcher
                 b.RedirectStandardInput = a.RedirectStandardInput;
                 b.RedirectStandardOutput = a.RedirectStandardOutput;
                 b.StandardErrorEncoding = a.StandardErrorEncoding;
-                b.StandardOutputEncoding = a.StandardErrorEncoding;
+                b.StandardOutputEncoding = a.StandardOutputEncoding;
                 b.UserName = a.UserName;
                 b.UseShellExecute = a.UseShellExecute;
                 b.Verb = a.Verb;
@@ -106,7 +106,7 @@ namespace Launcher
                 psi.RedirectStandardInput = mypsi.RedirectStandardInput;
                 psi.RedirectStandardOutput = mypsi.RedirectStandardOutput;
                 psi.StandardErrorEncoding = mypsi.StandardErrorEncoding;
-                psi.StandardOutputEncoding = mypsi.StandardErrorEncoding;
+                psi.StandardOutputEncoding = mypsi.StandardOutputEncoding;
                 psi.UserName = mypsi.UserName == null ? null : Environment.ExpandEnvironmentVariables(mypsi.UserName);
                 psi.UseShellExecute = mypsi.UseShellExecute;
                 psi.Verb = mypsi.Verb == null ? null : Environment.ExpandEnvironmentVariables(mypsi.Verb);
@@ -114,7 +114,7 @@ namespace Launcher
                 psi.WorkingDirectory = mypsi.WorkingDirectory == null ? null : Environment.ExpandEnvironmentVariables(mypsi.WorkingDirectory);
                 Environment.SetEnvironmentVariable("LauncherDir", null);
 
-                _ = Process.Start(psi);
+                Process.Start(psi).Dispose();
 #endif
 
             }
