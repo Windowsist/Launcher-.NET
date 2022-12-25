@@ -1,6 +1,4 @@
-# ProcessTools
-
-## Launcher
+# Launcher
 
 start process according to configuration file(xml file)
 
